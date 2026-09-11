@@ -37,6 +37,11 @@ jobs:
           aws lambda update-function-code \
             --function-name mws-auth-lambda \
             --zip-file fileb://deployment.zip
+          
+      - name: ⏳ Aguardar AWS processar o código
+        run: |
+          aws lambda wait function-updated \
+            --function-name mws-auth-lambda
 
       - name: ⚙️ Atualizar Variáveis de Ambiente
         env:
