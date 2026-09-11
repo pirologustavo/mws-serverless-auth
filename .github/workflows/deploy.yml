@@ -39,7 +39,13 @@ jobs:
             --zip-file fileb://deployment.zip
 
       - name: ⚙️ Atualizar Variáveis de Ambiente
+        env:
+            DB_HOST: ${{ secrets.DB_HOST }}
+            DB_USER: ${{ secrets.DB_USER }}
+            DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+            DB_DATABASE: ${{ secrets.DB_DATABASE }}
+            JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: |
-          aws lambda update-function-configuration \
-            --function-name mws-auth-lambda \
-            --environment "Variables={DB_HOST=${{ secrets.DB_HOST }},DB_USER=${{ secrets.DB_USER }},DB_PASSWORD=${{ secrets.DB_PASSWORD }},DB_DATABASE=${{ secrets.DB_DATABASE }},JWT_SECRET=${{ secrets.JWT_SECRET }}}"
+            aws lambda update-function-configuration \
+              --function-name mws-auth-lambda \
+              --environment "{\"Variables\":{\"DB_HOST\":\"$DB_HOST\",\"DB_USER\":\"$DB_USER\",\"DB_PASSWORD\":\"$DB_PASSWORD\",\"DB_DATABASE\":\"$DB_DATABASE\",\"JWT_SECRET\":\"$JWT_SECRET\"}}"
