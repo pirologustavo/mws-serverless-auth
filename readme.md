@@ -77,8 +77,6 @@ Fluxo da Pipeline:
 
 ---
 
----
-
 ## Autor
 - Gustavo Pirolo - Cientista da Computação & Junior Development Analyst
 - Apelido do Servidor: Gustavo Pirolo - RM371637
